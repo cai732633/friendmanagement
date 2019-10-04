@@ -80,7 +80,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
 
     }
 
-    public boolean checkSoureceExistence(String source)
+    public boolean checkSourceExistence(String source)
     {
         try
         {
@@ -92,13 +92,13 @@ public class FriendManagementServiceImpl implements FriendManagementService {
 
         }catch (Exception e)
         {
-            log.error("checkSoureceExistence error: ",e);
-            throw new RuntimeException("checkSoureceExistence error: "+e.toString());
+            log.error("checkSourceExistence error: ",e);
+            throw new RuntimeException("checkSourceExistence error: "+e.toString());
         }
 
     }
 
-    public boolean checkBlockSoureceExistence(String source)
+    public boolean checkBlockSourceExistence(String source)
     {
         try
         {
@@ -110,8 +110,8 @@ public class FriendManagementServiceImpl implements FriendManagementService {
 
         }catch (Exception e)
         {
-            log.error("checkBlockSoureceExistence error: ",e);
-            throw new RuntimeException("checkBlockSoureceExistence error: "+e.toString());
+            log.error("checkBlockSourceExistence error: ",e);
+            throw new RuntimeException("checkBlockSourceExistence error: "+e.toString());
         }
 
     }
@@ -120,7 +120,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
     {
         try
         {
-            if (checkBlockSoureceExistence(email1) ||checkBlockSoureceExistence(email2)) {
+            if (checkBlockSourceExistence(email1) ||checkBlockSourceExistence(email2)) {
 
                 //check whether email1 blocked by email2
                 BlockPo blockPo = new BlockPo();
@@ -210,7 +210,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
 
         try
         {
-            //////////////1. check whether ast and 2nd been blocked or not
+            //////////////0. check whether 1st and 2nd been blocked or not
 
             if (isBlockedRelationship(friendRequest.getFriends().get(0),friendRequest.getFriends().get(1)))
             {
@@ -230,7 +230,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
                 else  //1st not in the  target list of 2nd friend
                 {
                     //check second friend existence
-                    if (checkSoureceExistence(friendRequest.getFriends().get(1) )  ) //2nd friend exist as a source
+                    if (checkSourceExistence(friendRequest.getFriends().get(1) )  ) //2nd friend exist as a source
                     {
                         addTargetToSource(friendRequest.getFriends().get(1), friendRequest.getFriends().get(0));
                     }
@@ -246,7 +246,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
                 addTargetToSource(friendRequest.getFriends().get(0), friendRequest.getFriends().get(1));
 
                 //check 2nd as aa source existence
-                if (checkSoureceExistence(friendRequest.getFriends().get(1) )  ) //2nd exist as source
+                if (checkSourceExistence(friendRequest.getFriends().get(1) )  ) //2nd exist as source
                 {
                     addTargetToSource(friendRequest.getFriends().get(1), friendRequest.getFriends().get(0)); //add 1st to the target list of 2nd
                 }
@@ -262,7 +262,7 @@ public class FriendManagementServiceImpl implements FriendManagementService {
                 createSourceAndAssignTarget(friendRequest.getFriends().get(0), friendRequest.getFriends().get(1));
 
                 //check 2nd as aa source existence
-                if (checkSoureceExistence(friendRequest.getFriends().get(1) )  ) //2nd exist as source
+                if (checkSourceExistence(friendRequest.getFriends().get(1) )  ) //2nd exist as source
                 {
                     addTargetToSource(friendRequest.getFriends().get(1), friendRequest.getFriends().get(0)); //add 1st to the target list of 2nd
                 }
