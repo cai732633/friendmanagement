@@ -1,0 +1,29 @@
+# server port settings
+server:
+  port: 9001
+  # tomcat settings
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 100
+    max-connections: 20000
+  security:
+    basic:
+      enabled: false
+
+
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://test1213.mysql.database.azure.com:3306/test?useSSL=true&requireSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: test@test1213
+    password: pass@123!
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB53Dialect
+
+

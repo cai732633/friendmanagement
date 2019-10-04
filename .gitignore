@@ -1,0 +1,7 @@
+target
+.idea
+build
+*.iml
+*.log
+*.srl
+*.tar
