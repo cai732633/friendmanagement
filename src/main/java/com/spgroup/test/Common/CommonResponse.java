@@ -18,6 +18,8 @@ public class CommonResponse<T> {
     private Integer count;
     private String message;
 
+    private T recipients;
+
 
 
     /**
@@ -56,6 +58,12 @@ public class CommonResponse<T> {
         this.success = true;
         this.friends = data;
         this.count=count;
+
+    }
+
+    public CommonResponse(T data) {
+        this.success = true;
+        this.recipients = data;
 
     }
 

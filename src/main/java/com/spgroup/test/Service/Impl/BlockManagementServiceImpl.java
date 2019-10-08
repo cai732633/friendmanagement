@@ -63,4 +63,29 @@ public class BlockManagementServiceImpl implements BlockManagementService {
             throw new RuntimeException("block error: "+e.toString());
         }
     }
+
+    @Override
+    public boolean isBlocked(String blocked, String blockedBy) {
+        try
+        {
+            BlockPo blockPo= new BlockPo();
+            blockPo.setBlocked(blocked);
+
+            Example<BlockPo> target1 = Example.of(blockPo);
+
+            BlockPo blockPo1 = blockRepository.findOne(target1).orElse(null);
+            if (blockPo1!=null)
+            {
+                List<String> emailList= blockPo1.getBlockedBy().get("emails");
+                if (emailList.contains(blockedBy))
+                    return true;
+            }
+            return false;
+
+        }catch (Exception  e)
+        {
+            log.error("isBlocked error: ",e);
+            throw new RuntimeException("isBlocked error: "+e.toString());
+        }
+    }
 }

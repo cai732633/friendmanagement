@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // url whitelist
                 .antMatchers(
-                        "/friend/add","/friend/get","/friend/getcommon","/subscription","/block"
+                        "/friend/add","/friend/get","/friend/getcommon","/subscription","/block","/retrieve"
                        )
                 .permitAll()
                 .anyRequest().authenticated();

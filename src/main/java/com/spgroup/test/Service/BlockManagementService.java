@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BlockManagementService {
     void block(BlockRequest blockRequest);
+
+    boolean isBlocked(String blocked, String blockedBy);
 }

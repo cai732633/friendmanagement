@@ -66,5 +66,29 @@ public class SubscriptionManagementServiceImpl implements SubscriptionManagement
         }
     }
 
+    @Override
+    public List<String> get(String sender) {
+        try
+        {
+            SubscriptionPo subscriptionPo= new SubscriptionPo();
+            subscriptionPo.setTarget(sender);
+
+            Example<SubscriptionPo> target1 = Example.of(subscriptionPo);
+
+            SubscriptionPo subscriptionPo1 = subscriptionRepository.findOne(target1).orElse(null);
+            if (subscriptionPo1!=null)
+            {
+                List<String> emailList= subscriptionPo1.getRequestor().get("emails");
+                return emailList;
+            }
+            return null;
+
+        }catch (Exception e)
+        {
+            log.error("get subscription error: ",e);
+            throw new RuntimeException("get subscription error: "+e.toString());
+        }
+    }
+
 
 }
