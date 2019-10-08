@@ -1,0 +1,1 @@
+a sample friend management service
